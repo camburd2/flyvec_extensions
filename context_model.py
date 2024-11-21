@@ -11,7 +11,7 @@ class ContextModel():
 
         self.norm_rate = norm_rate
         self.count = 0
-        self.norm_rows = self.norm_mask = torch.zeros(K_size, dtype=bool, device=device)
+        self.norm_mask = torch.zeros(K_size, dtype=bool, device=device)
 
 
     def forward(self, x):
