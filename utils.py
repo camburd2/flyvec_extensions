@@ -16,10 +16,16 @@ class Encoder:
             words = input
         return [self.vocab[word] for word in words]
 
-    def one_hot(self, input):
+    def one_hot(self, input, create_target_vector=False):
         tokens = self.tokenize(input)
         encoded = torch.zeros(self.vocab_size, dtype=torch.float32)
         encoded[tokens] = 1
+        if create_target_vector:
+            #target is the mid of input
+            target = torch.zeros(self.vocab_size, dtype=torch.float32)
+            target[tokens[len(tokens) // 2]] = 1
+            #combine with encode+target
+            encoded = torch.cat((encoded, target))
         return encoded
 
 

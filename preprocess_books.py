@@ -38,6 +38,5 @@ def prepare_training_data(words, window_size):
     # Trim to full windows
     words_arr = np.array(words)
     words_arr = words_arr[:len(words_arr) - len(words_arr) % window_size]
-    
     # Reshape into windows
     return words_arr.reshape(-1, window_size)
