@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     # Load model and vocab
     checkpoint = 'model_checkpoint_17pct'
-    model = utils.load_model(f'trained_models/openwebtext_checkpoints/{checkpoint}.pt')
+    model = utils.load_model(f'trained_models/context_openwebtext_checkpoints/{checkpoint}.pt')
     vocab = load_vocab('simple-flyvec-embeddings.json')
 
     # Get embeddings
