@@ -63,7 +63,7 @@ class Encoder:
         """
         return [self.vocab.get(word, self.vocab[unk_token]) for word in input]
 
-    def one_hot(self, tokens):
+    def one_hot(self, tokens, create_target_vector=False):
         """
         One-hot encode tokens.
         Args:
@@ -74,4 +74,8 @@ class Encoder:
         """
         encoded = torch.zeros(self.vocab_size, dtype=torch.float32)
         encoded[tokens] = 1
+        if create_target_vector:
+            target = torch.zeros(self.vocab_size, dtype=torch.float32)
+            target[tokens[len(tokens) // 2]] = 1
+            encoded = torch.cat((encoded, target))
         return encoded
