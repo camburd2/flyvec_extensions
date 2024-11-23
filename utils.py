@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from context_model import ContextModel
+from flyvec_model import FlyvecModel
 
 
 class Encoder:
@@ -40,17 +40,17 @@ def calc_sim(v1, v2):
     return similarity
 
 
-def calc_print_sim_words(vocab, word_counts, model, word, hash_len=50, top_N=15):
+def calc_print_sim_words(vocab, word_counts, model, word, hash_len=50, top_N=15, create_target_vector=False):
     enc = Encoder(vocab)
 
-    enc_target_word = enc.one_hot(word)
+    enc_target_word = enc.one_hot(word, create_target_vector=create_target_vector)
     hash_target = model.get_embedding(enc_target_word, hash_len)
 
     sims = []
 
     # Calculate  similarity between target and the rest of vocab
     for word in vocab.keys():
-        enc_word = enc.one_hot(word)
+        enc_word = enc.one_hot(word, create_target_vector=create_target_vector)
         hash_word = model.get_embedding(enc_word, hash_len)
         sim = calc_sim(hash_target, hash_word)
         sims.append((word, sim))
@@ -79,7 +79,7 @@ def load_model(filepath, device='cpu'):
     state = torch.load(filepath, map_location=device)
     K_size, vocab_size = state['W'].shape
     
-    model = ContextModel(
+    model = FlyvecModel(
         K_size=K_size,
         vocab_size=vocab_size,
         k=state['k'],
