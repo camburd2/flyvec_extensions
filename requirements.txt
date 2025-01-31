@@ -1,0 +1,6 @@
+numpy
+torch
+datasets
+tqdm
+nltk
+einops
