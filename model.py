@@ -1,7 +1,4 @@
-import torch.nn as nn
-import time
 import torch
-
 
 class FlyvecModel:
     def __init__(self, K_size, vocab_size, k, lr, norm_rate=0, device='cpu', create_target_vector=False):
@@ -37,7 +34,7 @@ class FlyvecModel:
         self.count += 1
         if self.count > self.norm_rate:
             self.count = 0
-            self.W[self.norm_mask] = nn.functional.normalize(self.W[self.norm_mask], dim=1)
+            self.W[self.norm_mask] = torch.nn.functional.normalize(self.W[self.norm_mask], dim=1)
             self.norm_mask.zero_()
 
     def get_embedding(self, x, hash_len):
