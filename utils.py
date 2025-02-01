@@ -70,7 +70,13 @@ def print_sim_words(vocab, enc, model, hash_target, hash_len, create_target_vect
     for word, sim in top_N:
         print(f"{word:<15} {sim:>9.3f} {word_counts[word]:>10}")
 
-def calc_print_sim_words(vocab, word_counts, model, word, hash_len=50, top_N=15, create_target_vector=False):
+def calc_print_sim_words(vocab, 
+                         word_counts, 
+                         model, 
+                         word, 
+                         hash_len=50, 
+                         top_N=15, 
+                         create_target_vector=False):
     enc = Encoder(vocab)
 
     enc_target_word = enc.one_hot(word, create_target_vector=create_target_vector)
@@ -79,7 +85,14 @@ def calc_print_sim_words(vocab, word_counts, model, word, hash_len=50, top_N=15,
     print_sim_words(vocab, enc, model, hash_target, hash_len, create_target_vector, word_counts, top_N=top_N)
 
 
-def calc_print_sim_words_in_context(vocab, word_counts, model, sentence, target, hash_len = 50, top_N = 15, create_target_vector=False):
+def calc_print_sim_words_in_context(vocab, 
+                                    word_counts, 
+                                    model, 
+                                    sentence, 
+                                    target, 
+                                    hash_len = 50, 
+                                    top_N = 15, 
+                                    create_target_vector=False):
     enc = Encoder(vocab)
     end_target_word = enc.one_hot(sentence, create_target_vector=False, unsafe=True)
     if create_target_vector:

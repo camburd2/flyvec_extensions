@@ -1,7 +1,8 @@
 # flyvec extension
 
-modified FlyVec model that simplifies the original architecture and learning rule (original [paper](https://arxiv.org/abs/2101.06887), [repo](https://github.com/bhoov/flyvec?tab=readme-ov-file))
+Modified FlyVec model with simplified architecture and learning rule. Based on the original FlyVec model from ["Can a Fruit Fly Learn Word Embeddings?"](https://arxiv.org/abs/2101.06887)
 
-#### next steps
-- batch training with einops for longer openwebtext training run
+#### todo
+- implement batch training with einops 
+- longer openwebtext training run
 - eval/compare word sim results for modified and original models
