@@ -3,6 +3,7 @@ import nltk
 import book_dataset.preprocess_books as prep
 import utils
 from model import FlyvecModel
+import encoder
 
 
 def train_book(train_data, num_epochs, encoder):
@@ -10,8 +11,8 @@ def train_book(train_data, num_epochs, encoder):
     
     Args:
         train_data (np array): shape = (N, window size)
-        num_epochs
-        encoder (utils.Encoder()): encoder for book dataset
+        num_epochs (int): number of epochs to train
+        encoder (BookEncoder()): encoder for book dataset
     """
     
     for epoch in range(num_epochs):
@@ -35,6 +36,6 @@ if __name__ == "__main__":
         lr=.1,                          # Learning rate
         norm_rate=5,                    # Normalization rate
     )
-    enc = utils.Encoder(vocab=vocab_book)
+    enc = encoder.BookEncoder(vocab=vocab_book)
 
     train_book(train_data=train_data_book, num_epochs=1, encoder=enc)
